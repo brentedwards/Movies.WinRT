@@ -24,5 +24,7 @@ namespace Movies.WinRT.ViewModels
 
 		public string Title { get; set; }
 		public IEnumerable<Movie> Movies { get; set; }
+
+		public string GroupImageUrl { get; set; }
 	}
 }

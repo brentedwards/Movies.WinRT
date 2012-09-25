@@ -21,7 +21,14 @@ namespace Movies.WinRT.ViewModels
 
 			if (MovieRepository != null)
 			{
-				MovieGroups = MovieRepository.LoadMovies().GroupBy(m => m.Genre).Select(g => new MovieGroupViewModel(messenger) { Title = g.Key.ToString(), Movies = g.ToList() });
+				MovieGroups = MovieRepository.LoadMovies()
+					.GroupBy(m => m.Genre)
+					.Select(g => new MovieGroupViewModel(messenger)
+					{
+						Title = g.Key.ToString(),
+						Movies = g.ToList(),
+						GroupImageUrl = g.First().ImageUrl
+					});
 			}
 		}
 
