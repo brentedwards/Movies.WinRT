@@ -13,11 +13,16 @@ namespace Movies.WinRT.ViewModels
 	{
 		private readonly IMovieRepository MovieRepository;
 
-		public GroupedMoviesViewModel(IMessenger messenger)
+		public GroupedMoviesViewModel(
+			IMessenger messenger,
+			IMovieRepository movieRepository)
 		{
-			MovieRepository = new MovieRepository();
+			MovieRepository = movieRepository;
 
-			MovieGroups = MovieRepository.LoadMovies().GroupBy(m => m.Genre).Select(g => new MovieGroupViewModel(messenger) { Title = g.Key.ToString(), Movies = g.ToList() });
+			if (MovieRepository != null)
+			{
+				MovieGroups = MovieRepository.LoadMovies().GroupBy(m => m.Genre).Select(g => new MovieGroupViewModel(messenger) { Title = g.Key.ToString(), Movies = g.ToList() });
+			}
 		}
 
 		private IEnumerable<MovieGroupViewModel> movieGroups;

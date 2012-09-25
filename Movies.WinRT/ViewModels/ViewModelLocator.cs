@@ -16,6 +16,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
+using Movies.WinRT.Repositories;
+using Movies.WinRT.ViewModels.Design;
 
 namespace Movies.WinRT.ViewModels
 {
@@ -32,30 +34,20 @@ namespace Movies.WinRT.ViewModels
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
+			if (ViewModelBase.IsInDesignModeStatic)
+			{
+				// Create design time view services and models
+				Register<GroupedMoviesViewModel, DesignGroupedMoviesViewModel>();
+			}
+			else
+			{
+				// Create run time view services and models
+				Register<GroupedMoviesViewModel>();
+				Register<IMovieRepository, MovieRepository>();
 
-            SimpleIoc.Default.Register<GroupedMoviesViewModel>();
-
-			var messenger = new Messenger();
-			SimpleIoc.Default.Register<IMessenger>(() => messenger);
+				Register<IMessenger>(new Messenger());
+			}
         }
-
-		//public MainViewModel Main
-		//{
-		//	get
-		//	{
-		//		return ServiceLocator.Current.GetInstance<MainViewModel>();
-		//	}
-		//}
 
 		public GroupedMoviesViewModel GroupedMovies
 		{
@@ -69,5 +61,43 @@ namespace Movies.WinRT.ViewModels
         {
             // TODO Clear the ViewModels
         }
+
+		/// <summary>
+		/// Registers a class for the given base type with the IoC container
+		/// </summary>
+		/// <typeparam name="TBase">The base class, or interface, type</typeparam>
+		/// <typeparam name="TImpl">A concrete type that implements of the base class or interface</typeparam>
+		private void Register<TBase, TImpl>()
+			where TBase : class
+			where TImpl : class
+		{
+			if (!SimpleIoc.Default.IsRegistered<TBase>())
+				SimpleIoc.Default.Register<TBase, TImpl>();
+		}
+
+		/// <summary>
+		/// Registers a class with the IoC container
+		/// </summary>
+		/// <typeparam name="TImpl">A concrete type</typeparam>
+		private void Register<TImpl>()
+			where TImpl : class
+		{
+			if (!SimpleIoc.Default.IsRegistered<TImpl>())
+				SimpleIoc.Default.Register<TImpl>();
+		}
+
+		/// <summary>
+		/// Registers an instance of a class with the IoC container
+		/// </summary>
+		/// <typeparam name="TImpl">A concrete type</typeparam>
+		/// <param name="instance">The instance</param>
+		private void Register<TImpl>(TImpl instance)
+			where TImpl : class
+		{
+			if (!SimpleIoc.Default.IsRegistered<TImpl>())
+			{
+				SimpleIoc.Default.Register<TImpl>(new System.Func<TImpl>(() => { return instance; }));
+			}
+		}
     }
 }
