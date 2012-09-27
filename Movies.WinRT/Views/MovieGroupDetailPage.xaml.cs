@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Movies.WinRT.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -40,6 +41,8 @@ namespace Movies.WinRT.Views
 		{
 			// TODO: Assign a bindable group to this.DefaultViewModel["Group"]
 			// TODO: Assign a collection of bindable items to this.DefaultViewModel["Items"]
+			var viewModel = (MovieGroupDetailViewModel)DataContext;
+			viewModel.LoadMovieGroup((string)navigationParameter);
 		}
 	}
 }

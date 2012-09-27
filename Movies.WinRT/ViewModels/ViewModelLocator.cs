@@ -38,11 +38,13 @@ namespace Movies.WinRT.ViewModels
 			{
 				// Create design time view services and models
 				Register<GroupedMoviesViewModel, DesignGroupedMoviesViewModel>();
+				Register<MovieGroupDetailViewModel, DesignMovieGroupDetailViewModel>();
 			}
 			else
 			{
 				// Create run time view services and models
 				Register<GroupedMoviesViewModel>();
+				Register<MovieGroupDetailViewModel>();
 				Register<IMovieRepository, MovieRepository>();
 
 				Register<IMessenger>(new Messenger());
@@ -51,10 +53,12 @@ namespace Movies.WinRT.ViewModels
 
 		public GroupedMoviesViewModel GroupedMovies
 		{
-			get
-			{
-				return ServiceLocator.Current.GetInstance<GroupedMoviesViewModel>();
-			}
+			get { return ServiceLocator.Current.GetInstance<GroupedMoviesViewModel>(); }
+		}
+
+		public MovieGroupDetailViewModel MovieGroupDetail
+		{
+			get { return ServiceLocator.Current.GetInstance<MovieGroupDetailViewModel>(); }
 		}
         
         public static void Cleanup()

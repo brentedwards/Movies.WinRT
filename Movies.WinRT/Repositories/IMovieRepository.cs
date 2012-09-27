@@ -11,5 +11,6 @@ namespace Movies.WinRT.Repositories
     public interface IMovieRepository
     {
         IEnumerable<Movie> LoadMovies();
+		IEnumerable<Movie> LoadMoviesByGroup(string groupName);
     }
 }

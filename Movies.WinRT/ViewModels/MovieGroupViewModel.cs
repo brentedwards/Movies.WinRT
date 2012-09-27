@@ -20,7 +20,7 @@ namespace Movies.WinRT.ViewModels
 				});
 		}
 
-		public RelayCommand SelectCommand { get; set; }
+		public RelayCommand SelectCommand { get; private set; }
 
 		public string Title { get; set; }
 		public IEnumerable<Movie> Movies { get; set; }

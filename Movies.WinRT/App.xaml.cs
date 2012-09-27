@@ -69,7 +69,7 @@ namespace Movies.WinRT
 			var messenger = SimpleIoc.Default.GetInstance<IMessenger>();
 			messenger.Register<GroupSelectedMessage>(this, (message) =>
 				{
-					rootFrame.Navigate(typeof(MovieGroupDetailPage));
+					rootFrame.Navigate(typeof(MovieGroupDetailPage), message.GroupName);
 				});
 
             if (rootFrame.Content == null)

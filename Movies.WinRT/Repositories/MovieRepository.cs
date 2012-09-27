@@ -30,5 +30,13 @@ namespace Movies.WinRT.Repositories
 
 			return movies;
         }
-    }
+
+
+		public IEnumerable<Movie> LoadMoviesByGroup(string groupName)
+		{
+			var movies = LoadMovies();
+
+			return movies.Where(m => m.Genre.ToString() == groupName);
+		}
+	}
 }
