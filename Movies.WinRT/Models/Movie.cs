@@ -14,13 +14,14 @@ namespace Movies.WinRT.Models
 		}
 
 
-		public Movie(int id, String name, Genres genre, Ratings rating, string imageUrl)
+		public Movie(int id, String name, Genres genre, Ratings rating, string imageUrl, string synopsis)
 		{
 			Id = id;
 			Name = name;
 			Genre = genre;
 			Rating = rating;
 			ImageUrl = imageUrl;
+			Synopsis = synopsis;
 		}
 
 
@@ -70,6 +71,17 @@ namespace Movies.WinRT.Models
 			{
 				imageUrl = value;
 				NotifyPropertyChanged("ImageUrl");
+			}
+		}
+
+		private string synopsis;
+		public string Synopsis
+		{
+			get { return synopsis; }
+			set
+			{
+				synopsis = value;
+				NotifyPropertyChanged("Synopsis");
 			}
 		}
 	}

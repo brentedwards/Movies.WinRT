@@ -50,12 +50,11 @@
             Margin="0,-14,0,0"
             Padding="120,0,120,50"
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
-            ItemTemplate="{StaticResource Standard500x130ItemTemplate}">
+            ItemTemplate="{StaticResource SmallMovieDetailTemplate}">
 
             <GridView.Header>
                 <StackPanel Width="480" Margin="0,4,14,0">
                     <Image Source="{Binding GroupImageUrl}" Margin="0,0,18,0" Stretch="UniformToFill"/>
-                    <TextBlock Text="{Binding Description}" Margin="0,0,18,0" Style="{StaticResource BodyTextStyle}"/>
                 </StackPanel>
             </GridView.Header>
             <GridView.ItemContainerStyle>
@@ -75,12 +74,11 @@
             Visibility="Collapsed"
             Padding="10,0,0,60"
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
-            ItemTemplate="{StaticResource Standard80ItemTemplate}">
+            ItemTemplate="{StaticResource SnappedMovieTemplate}">
 
             <ListView.Header>
                 <StackPanel>
-                    <Image Source="{Binding ImageUrl}" Margin="20,0,18,0" MaxHeight="160" Stretch="UniformToFill"/>
-                    <TextBlock Margin="20,20,18,30" Text="{Binding Description}" Style="{StaticResource BodyTextStyle}"/>
+                    <Image Source="{Binding GroupImageUrl}" Margin="20,0,18,0" MaxHeight="160" Stretch="UniformToFill"/>
                 </StackPanel>
             </ListView.Header>
         </ListView>
