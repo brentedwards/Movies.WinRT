@@ -71,6 +71,10 @@ namespace Movies.WinRT
 				{
 					rootFrame.Navigate(typeof(MovieGroupDetailPage), message.GroupName);
 				});
+			messenger.Register<MovieSelectedMessage>(this, (message) =>
+				{
+					rootFrame.Navigate(typeof(MovieDetailPage), message);
+				});
 
             if (rootFrame.Content == null)
             {

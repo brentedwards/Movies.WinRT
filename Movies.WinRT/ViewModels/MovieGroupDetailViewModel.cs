@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using Movies.WinRT.Messages;
 using Movies.WinRT.Models;
 using Movies.WinRT.Repositories;
 
@@ -20,6 +22,11 @@ namespace Movies.WinRT.ViewModels
 		{
 			MovieRepository = movieRepository;
 			Messenger = messenger;
+
+			MovieSelectedCommand = new RelayCommand<Movie>((movie) =>
+			{
+				messenger.Send<MovieSelectedMessage>(new MovieSelectedMessage { Movie = movie, MovieGroup = MovieGroup });
+			});
 		}
 
 		public void LoadMovieGroup(string groupName)
@@ -43,5 +50,7 @@ namespace Movies.WinRT.ViewModels
 				NotifyPropertyChanged("MovieGroup");
 			}
 		}
+
+		public RelayCommand<Movie> MovieSelectedCommand { get; private set; }
 	}
 }

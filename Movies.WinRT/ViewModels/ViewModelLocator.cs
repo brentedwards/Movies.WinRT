@@ -34,6 +34,8 @@ namespace Movies.WinRT.ViewModels
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+			Register<MovieDetailViewModel>();
+
 			if (ViewModelBase.IsInDesignModeStatic)
 			{
 				// Create design time view services and models
@@ -59,6 +61,11 @@ namespace Movies.WinRT.ViewModels
 		public MovieGroupDetailViewModel MovieGroupDetail
 		{
 			get { return ServiceLocator.Current.GetInstance<MovieGroupDetailViewModel>(); }
+		}
+
+		public MovieDetailViewModel MovieDetail
+		{
+			get { return ServiceLocator.Current.GetInstance<MovieDetailViewModel>(); }
 		}
         
         public static void Cleanup()

@@ -14,6 +14,7 @@
 			</Border>
 			<StackPanel Grid.Column="1" Margin="10,0,0,0">
 				<TextBlock Text="{Binding Name}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
+				<TextBlock Text="{Binding Rating}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
 			</StackPanel>
 		</Grid>
 	</DataTemplate>

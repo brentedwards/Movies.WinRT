@@ -109,15 +109,19 @@
     <Compile Include="GroupDetailPage.xaml.cs">
       <DependentUpon>GroupDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\GridViewItemClick.cs" />
+    <Compile Include="Helpers\ListViewItemClick.cs" />
     <Compile Include="ItemDetailPage.xaml.cs">
       <DependentUpon>ItemDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Messages\GroupSelectedMessage.cs" />
+    <Compile Include="Messages\MovieSelectedMessage.cs" />
     <Compile Include="Models\Genres.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="ViewModels\Design\DesignGroupedMoviesViewModel.cs" />
     <Compile Include="ViewModels\Design\DesignMovieGroupDetailViewModel.cs" />
+    <Compile Include="ViewModels\MovieDetailViewModel.cs" />
     <Compile Include="ViewModels\MovieGroupDetailViewModel.cs" />
     <Compile Include="ViewModels\MovieGroupViewModel.cs" />
     <Compile Include="Models\Ratings.cs" />
@@ -135,6 +139,9 @@
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\GroupedMoviesPage.xaml.cs">
       <DependentUpon>GroupedMoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MovieDetailPage.xaml.cs">
+      <DependentUpon>MovieDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MovieGroupDetailPage.xaml.cs">
       <DependentUpon>MovieGroupDetailPage.xaml</DependentUpon>
@@ -198,6 +205,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\GroupedMoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MovieDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using Movies.WinRT.Messages;
 using Movies.WinRT.Models;
 using Movies.WinRT.Repositories;
 
@@ -30,6 +32,12 @@ namespace Movies.WinRT.ViewModels
 						GroupImageUrl = g.First().ImageUrl
 					});
 			}
+
+			MovieSelectedCommand = new RelayCommand<Movie>((movie) =>
+				{
+					var movieGroup = MovieGroups.First(mg => mg.Movies.Contains(movie));
+					messenger.Send<MovieSelectedMessage>(new MovieSelectedMessage { Movie = movie, MovieGroup = movieGroup });
+				});
 		}
 
 		private IEnumerable<MovieGroupViewModel> movieGroups;
@@ -42,5 +50,7 @@ namespace Movies.WinRT.ViewModels
 				NotifyPropertyChanged("Movies");
 			}
 		}
+
+		public RelayCommand<Movie> MovieSelectedCommand { get; private set; }
 	}
 }
