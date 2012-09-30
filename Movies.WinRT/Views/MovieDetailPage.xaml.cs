@@ -52,6 +52,7 @@ namespace Movies.WinRT.Views
 			viewModel.Movie = movieSelectedMessage.Movie;
 			viewModel.MovieGroup = movieSelectedMessage.MovieGroup;
 
+			// The following is a hack to make the FlipView respond to SelectedItem.
 			var setSelectedItem = true;
 			flipView.LayoutUpdated += (sender, args) =>
 				{
