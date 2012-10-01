@@ -40,10 +40,5 @@ namespace Movies.WinRT.Views
 		{
 			// TODO: Assign a collection of bindable groups to this.DefaultViewModel["Groups"]
 		}
-
-		private void Header_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
 	}
 }
