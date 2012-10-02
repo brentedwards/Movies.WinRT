@@ -9,7 +9,6 @@ namespace Movies.WinRT.ViewModels
 {
 	public class MovieDetailViewModel : ModelBase
 	{
-		// TODO: Use the flip view to allow flipping between all the movies that came from where we navigated from.
 		private Movie movie;
 		public Movie Movie
 		{

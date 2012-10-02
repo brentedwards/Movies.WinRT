@@ -19,14 +19,14 @@ namespace Movies.WinRT.ViewModels
 					messenger.Send<GroupSelectedMessage>(new GroupSelectedMessage { GroupName = Title });
 				});
 
-			MovieSelectedCommand = new RelayCommand<Movie>((movie) =>
+			MovieTappedCommand = new RelayCommand<Movie>((movie) =>
 				{
 					messenger.Send<MovieSelectedMessage>(new MovieSelectedMessage { Movie = movie, MovieGroup = this });
 				});
 		}
 
 		public RelayCommand SelectCommand { get; private set; }
-		public RelayCommand<Movie> MovieSelectedCommand { get; private set; }
+		public RelayCommand<Movie> MovieTappedCommand { get; private set; }
 
 		public string Title { get; set; }
 		public IEnumerable<Movie> Movies { get; set; }

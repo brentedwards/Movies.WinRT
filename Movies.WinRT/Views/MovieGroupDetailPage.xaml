@@ -54,7 +54,7 @@
             ItemTemplate="{StaticResource SmallMovieDetailTemplate}"
 			IsItemClickEnabled="True"
 			SelectionMode="None"
-			helpers:GridViewItemClick.Command="{Binding MovieSelectedCommand}">
+			helpers:GridViewItemClick.Command="{Binding MovieTappedCommand}">
 
             <GridView.Header>
                 <StackPanel Width="480" Margin="0,4,14,0">
@@ -81,7 +81,7 @@
             ItemTemplate="{StaticResource SnappedMovieTemplate}"
 			IsItemClickEnabled="True"
 			SelectionMode="None"
-			helpers:ListViewItemClick.Command="{Binding MovieSelectedCommand}">
+			helpers:ListViewItemClick.Command="{Binding MovieTappedCommand}">
 
             <ListView.Header>
                 <StackPanel>
