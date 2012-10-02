@@ -58,8 +58,9 @@
 					Padding="116,0,40,46"
 					ItemsSource="{Binding Source={StaticResource groupedMoviesViewSource}}"
 					IsItemClickEnabled="True"
-					SelectionMode="None"
-					helpers:GridViewItemClick.Command="{Binding MovieSelectedCommand}">
+					SelectionMode="Single"
+					SelectedItem="{Binding SelectedMovie, Mode=TwoWay}"
+					helpers:GridViewItemClick.Command="{Binding MovieTappedCommand}">
 					<GridView.ItemTemplate>
 						<DataTemplate>
 							<Grid HorizontalAlignment="Left" Width="250" Height="250">
@@ -154,8 +155,9 @@
             ItemsSource="{Binding Source={StaticResource groupedMoviesViewSource}}"
 			ItemTemplate="{StaticResource SnappedMovieTemplate}"
 			IsItemClickEnabled="True"
-			SelectionMode="None"
-			helpers:ListViewItemClick.Command="{Binding MovieSelectedCommand}">
+			SelectionMode="Single"
+			SelectedItem="{Binding SelectedMovie, Mode=TwoWay}"
+			helpers:ListViewItemClick.Command="{Binding MovieTappedCommand}">
             <ListView.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate>
@@ -217,4 +219,14 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>
+	<common:LayoutAwarePage.BottomAppBar>
+		<AppBar Padding="10,0,10,0">
+			<Grid>
+				<Button
+					Command="{Binding MovieSelectedCommand}"
+					Style="{StaticResource YesAppBarButtonStyle}"
+					AutomationProperties.Name="Select" />
+			</Grid>
+		</AppBar>
+	</common:LayoutAwarePage.BottomAppBar>
 </common:LayoutAwarePage>

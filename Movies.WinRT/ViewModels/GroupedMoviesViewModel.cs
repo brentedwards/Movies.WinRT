@@ -33,10 +33,16 @@ namespace Movies.WinRT.ViewModels
 					});
 			}
 
-			MovieSelectedCommand = new RelayCommand<Movie>((movie) =>
+			MovieTappedCommand = new RelayCommand<Movie>((movie) =>
 				{
 					var movieGroup = MovieGroups.First(mg => mg.Movies.Contains(movie));
 					messenger.Send<MovieSelectedMessage>(new MovieSelectedMessage { Movie = movie, MovieGroup = movieGroup });
+				});
+
+			MovieSelectedCommand = new RelayCommand(() =>
+				{
+					var movieGroup = MovieGroups.First(mg => mg.Movies.Contains(SelectedMovie));
+					messenger.Send<MovieSelectedMessage>(new MovieSelectedMessage { Movie = SelectedMovie, MovieGroup = movieGroup });
 				});
 		}
 
@@ -51,6 +57,18 @@ namespace Movies.WinRT.ViewModels
 			}
 		}
 
-		public RelayCommand<Movie> MovieSelectedCommand { get; private set; }
+		private Movie selectedMovie;
+		public Movie SelectedMovie
+		{
+			get { return selectedMovie; }
+			set
+			{
+				selectedMovie = value;
+				NotifyPropertyChanged("SelectedMovie");
+			}
+		}
+
+		public RelayCommand<Movie> MovieTappedCommand { get; private set; }
+		public RelayCommand MovieSelectedCommand { get; private set; }
 	}
 }
