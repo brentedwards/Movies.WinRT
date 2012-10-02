@@ -29,12 +29,12 @@ namespace Movies.WinRT.Helpers
 
 		private static void CommandPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
-			((ListView)d).ItemClick += ItemClick_ItemClick;
+			((ListViewBase)d).ItemClick += ItemClick_ItemClick;
 		}
 
 		private static void ItemClick_ItemClick(object sender, ItemClickEventArgs e)
 		{
-			var listView = (ListView)sender;
+			var listView = (ListViewBase)sender;
 			var command = GetCommand(listView);
 			command.Execute(e.ClickedItem);
 		}

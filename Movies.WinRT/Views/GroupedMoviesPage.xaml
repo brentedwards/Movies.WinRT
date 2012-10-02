@@ -60,7 +60,7 @@
 					IsItemClickEnabled="True"
 					SelectionMode="Single"
 					SelectedItem="{Binding SelectedMovie, Mode=TwoWay}"
-					helpers:GridViewItemClick.Command="{Binding MovieTappedCommand}">
+					helpers:ListViewItemClick.Command="{Binding MovieTappedCommand}">
 					<GridView.ItemTemplate>
 						<DataTemplate>
 							<Grid HorizontalAlignment="Left" Width="250" Height="250">

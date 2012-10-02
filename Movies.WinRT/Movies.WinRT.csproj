@@ -103,7 +103,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\GridViewItemClick.cs" />
     <Compile Include="Helpers\ListViewItemClick.cs" />
     <Compile Include="Messages\GroupSelectedMessage.cs" />
     <Compile Include="Messages\MovieSelectedMessage.cs" />
