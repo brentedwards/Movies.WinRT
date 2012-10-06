@@ -5,8 +5,12 @@ using System.Linq;
 using Movies.WinRT.Messages;
 using Movies.WinRT.Models;
 using Movies.WinRT.ViewModels;
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -63,6 +67,9 @@ namespace Movies.WinRT.Views
 						flipView.SelectedItem = viewModel.Movie;
 					}
 				};
+
+			var dataTransferManager = DataTransferManager.GetForCurrentView();
+			dataTransferManager.DataRequested += dataTransferManager_DataRequested;
 		}
 
 		/// <summary>
@@ -75,6 +82,29 @@ namespace Movies.WinRT.Views
 		{
 			var selectedItem = this.flipView.SelectedItem;
 			// TODO: Derive a serializable navigation parameter and assign it to pageState["SelectedItem"]
+
+			var dataTransferManager = DataTransferManager.GetForCurrentView();
+			dataTransferManager.DataRequested -= dataTransferManager_DataRequested;
+		}
+
+		private async void dataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+		{
+			var viewModel = (MovieDetailViewModel)DataContext;
+
+			var request = args.Request;
+
+			request.Data.Properties.Title = viewModel.Movie.Name;
+			request.Data.SetText(viewModel.Movie.Synopsis);
+
+			var file = await Package.Current.InstalledLocation.GetFileAsync(viewModel.Movie.ImageUrl.Substring(1).Replace("/", @"\"));
+
+			List<IStorageItem> imageItems = new List<IStorageItem>();
+			imageItems.Add(file);
+			request.Data.SetStorageItems(imageItems);
+
+			RandomAccessStreamReference imageStreamRef = RandomAccessStreamReference.CreateFromFile(file);
+			request.Data.Properties.Thumbnail = imageStreamRef;
+			request.Data.SetBitmap(imageStreamRef);
 		}
 	}
 }
