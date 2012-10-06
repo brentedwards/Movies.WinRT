@@ -135,6 +135,9 @@
     <Compile Include="Views\MovieGroupDetailPage.xaml.cs">
       <DependentUpon>MovieGroupDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MovieSearchResultsPage.xaml.cs">
+      <DependentUpon>MovieSearchResultsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -190,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MovieGroupDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MovieSearchResultsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

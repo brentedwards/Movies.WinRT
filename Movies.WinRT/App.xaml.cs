@@ -105,5 +105,14 @@ namespace Movies.WinRT
             await SuspensionManager.SaveAsync();
             deferral.Complete();
         }
+
+		/// <summary>
+		/// Invoked when the application is activated to display search results.
+		/// </summary>
+		/// <param name="args">Details about the activation request.</param>
+		protected override void OnSearchActivated(Windows.ApplicationModel.Activation.SearchActivatedEventArgs args)
+		{
+			Movies.WinRT.Views.MovieSearchResultsPage.Activate(args.QueryText, args.PreviousExecutionState);
+		}
     }
 }

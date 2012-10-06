@@ -7,6 +7,7 @@ using Movies.WinRT.Models;
 using Movies.WinRT.ViewModels;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.ApplicationModel.Search;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
